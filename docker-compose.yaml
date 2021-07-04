@@ -1,0 +1,20 @@
+version: "3"
+services:
+  php-fpm:
+    build: ./modules/php-fpm
+    volumes:
+    - ./domain:/var/www/html
+    - ./config/php.ini:/usr/local/etc/php/php.ini
+
+  rabbitmq:
+    image: rabbitmq
+    ports:
+    - 5672:5672
+
+  nginx:
+    image: nginx
+    volumes:
+    - ./domain:/var/www/html
+    - ./config/nginx.conf:/etc/nginx/conf.d/default.conf
+    ports:
+    - 80:80
