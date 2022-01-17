@@ -7,9 +7,12 @@ services:
     - ./config/php.ini:/usr/local/etc/php/php.ini
 
   rabbitmq:
-    image: rabbitmq
+    build:
+      context: ./modules/rabbit
     ports:
     - 5672:5672
+    - 15692:15692
+    - 15672:15672
 
   nginx:
     image: nginx
